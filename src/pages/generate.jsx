@@ -52,10 +52,10 @@ const Generate = () => {
 
     const fetchData = async () => {
       try {
-        socket.on("dataPayment", (results) => {
-          setPageDone(results);
-          console.log({ dataSocket: results.code });
-        });
+        // socket.on("dataPayment", (results) => {
+        //   setPageDone(results);
+        //   console.log({ dataSocket: results.code });
+        // });
         const response = await fetch(apiUrl, {
           method: "POST",
           body: JSON.stringify({ data: encryptedData }),
