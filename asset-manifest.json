@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/landing_page_qris/static/css/main.42ab7103.css",
+    "main.js": "/landing_page_qris/static/js/main.71aded3b.js",
+    "index.html": "/landing_page_qris/index.html",
+    "main.42ab7103.css.map": "/landing_page_qris/static/css/main.42ab7103.css.map",
+    "main.71aded3b.js.map": "/landing_page_qris/static/js/main.71aded3b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.42ab7103.css",
+    "static/js/main.71aded3b.js"
+  ]
+}
