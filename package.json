@@ -2,7 +2,6 @@
   "name": "skyparking_qrcode",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://147.139.135.195:2101",
   "homepage": "https://landing-page-qris.vercel.app",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
