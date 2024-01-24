@@ -8,7 +8,7 @@ import io from "socket.io-client";
 import CountdownTimer from "../components/countDownt";
 import NumberFormatComponent from "../components/numberFormater";
 
-const socket = io("http://127.0.0.1:3002");
+const socket = io("http://192.168.0.184:3002");
 
 const Generate = () => {
   const [countdownStatus, setCountdownStatus] = useState("active");
