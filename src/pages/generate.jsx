@@ -4,11 +4,12 @@ import QRCode from "qrcode.react";
 import { useNavigate, useLocation } from "react-router-dom";
 import CryptoJS from "crypto-js";
 import { MD5 } from "crypto-js";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 import CountdownTimer from "../components/countDownt";
 import NumberFormatComponent from "../components/numberFormater";
+import Pusher from "pusher-js";
 
-const socket = io("http://192.168.0.184:3002");
+// const socket = io("https://82qvhws5-3005.asse.devtunnels.ms");
 
 const Generate = () => {
   const [countdownStatus, setCountdownStatus] = useState("active");
@@ -56,6 +57,17 @@ const Generate = () => {
         //   setPageDone(results);
         //   console.log({ dataSocket: results.code });
         // });
+        const pusher = new Pusher("548ff46dda83b623f146", {
+          cluster: "ap1",
+        });
+
+        const channel = pusher.subscribe("Issues");
+
+        channel.bind("PopUp", (data) => {
+          // Handle received data here
+          setPageDone(data.data.code);
+          console.log("Received data:", data.data.code);
+        });
         const response = await fetch(apiUrl, {
           method: "POST",
           body: JSON.stringify({ data: encryptedData }),
@@ -80,13 +92,17 @@ const Generate = () => {
     setP1(paramP1);
     setP2(paramP2);
     fetchData();
+    // return () => {
+    //   // Unsubscribe when component unmounts
+    //   pusher.unsubscribe("channel-name");
+    // };
   }, [location.search]);
 
   const generateLink = `http://localhost:3000/generate?p1=${p1}&p2=${p2}`;
 
   console.log({ dataSaya: pageDone.code });
 
-  if (pageDone.code === 200) {
+  if (pageDone === 200) {
     const data = {
       noTrx: p2,
       locations: apiResponse.data.location,
@@ -114,12 +130,12 @@ const Generate = () => {
     link.click();
     document.body.removeChild(link);
   };
-
+  console.log(currentQRCode);
   return (
     <div className="p-5">
       {apiResponse && (
         <div className="h-full">
-          <div className="w-96 h-[60vh] xl:h-[93vh] flex flex-col justify-center items-center m-auto bg-white rounded-md shadow-md shadow-white">
+          <div className="w-full h-[80vh] xl:h-[93vh] xl:w-96 flex flex-col justify-center items-center m-auto bg-white rounded-md shadow-md shadow-white">
             <div
               className={`h-[40%] w-full bg-blue-400 rounded-t-md border-gray-900 text-black ${
                 countdownStatus === "active" ? " " : "hidden"
