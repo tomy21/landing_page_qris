@@ -78,14 +78,14 @@ const Generate = () => {
           },
         });
         console.log("repsones : ", response);
-        const responseData = await response.json();
-        const apiResponse = CryptoJS.AES.decrypt(responseData.data, key);
-        const decryptedData = JSON.parse(
-          apiResponse.toString(CryptoJS.enc.Utf8)
-        );
-        setApiResponse(decryptedData);
-        setCurrentQRCode(responseData.data);
-        console.log(decryptedData);
+        // const responseData = await response.json();
+        // const apiResponse = CryptoJS.AES.decrypt(responseData.data, key);
+        // const decryptedData = JSON.parse(
+        //   apiResponse.toString(CryptoJS.enc.Utf8)
+        // );
+        // setApiResponse(decryptedData);
+        // setCurrentQRCode(responseData.data);
+        // console.log(decryptedData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
