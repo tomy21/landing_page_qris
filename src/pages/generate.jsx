@@ -51,6 +51,7 @@ const Generate = () => {
       key
     ).toString();
 
+    console.log("data :", encryptedData);
     const fetchData = async () => {
       try {
         // socket.on("dataPayment", (results) => {
@@ -76,6 +77,7 @@ const Generate = () => {
             "Access-Control-Allow-Origin": "*",
           },
         });
+        console.log("repsones : ", response);
         const responseData = await response.json();
         const apiResponse = CryptoJS.AES.decrypt(responseData.data, key);
         const decryptedData = JSON.parse(
