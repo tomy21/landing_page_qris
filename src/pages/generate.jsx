@@ -35,7 +35,7 @@ const Generate = () => {
     const month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
     const day = currentDate.getDate().toString().padStart(2, "0");
     const date = `${year}${month}${day}PARTNER_KEY`;
-    const apiUrl = `/general/Partner/InquiryTransaction`;
+    const apiUrl = `http://147.139.135.195:2101/general/Partner/InquiryTransaction`;
     const key = date;
     const hash = MD5(login + password + paramP1 + paramP2 + secret).toString();
 
@@ -130,6 +130,7 @@ const Generate = () => {
     link.click();
     document.body.removeChild(link);
   };
+
   console.log(currentQRCode);
   return (
     <div className="p-5">
