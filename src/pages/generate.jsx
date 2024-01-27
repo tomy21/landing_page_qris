@@ -131,7 +131,7 @@ const Generate = () => {
     <div className="p-5">
       {apiResponse && (
         <div className="h-full">
-          <div className="w-full h-[100vh] xl:h-[93vh] xl:w-96 flex flex-col justify-center items-center m-auto bg-white rounded-md shadow-md shadow-white">
+          <div className="w-full h-[95vh] xl:h-[93vh] xl:w-96 flex flex-col justify-center items-center m-auto bg-white rounded-md shadow-md shadow-white">
             <div
               className={`h-[40%] w-full bg-blue-400 rounded-t-md border-gray-900 text-black ${
                 countdownStatus === "active" ? " " : "hidden"
