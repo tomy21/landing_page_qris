@@ -151,7 +151,7 @@ const Generate = () => {
                 )}
               </h1>
               <h1
-                className={`text-xs w-[70%] m-auto mt-4 text-center ${
+                className={`text-xs w-[85%] xl:w-[70%] m-auto mt-4 text-center ${
                   countdownStatus === "active" ? " " : "hidden"
                 }`}
               >
