@@ -36,7 +36,7 @@ const Generate = () => {
     const month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
     const day = currentDate.getDate().toString().padStart(2, "0");
     const date = `${year}${month}${day}PARTNER_KEY`;
-    const apiUrl = `/general/Partner/InquiryTransaction`;
+    const apiUrl = `https://api-testing-murex.vercel.app/general/Partner/InquiryTransaction`;
     const key = date;
     const hash = MD5(login + password + paramP1 + paramP2 + secret).toString();
 
@@ -104,7 +104,7 @@ const Generate = () => {
     // };
   }, [location.search]);
 
-  const generateLink = `http://localhost:3000/generate?p1=${p1}&p2=${p2}`;
+  // const generateLink = `http://localhost:3000/generate?p1=${p1}&p2=${p2}`;
 
   console.log({ dataSaya: pageDone.code });
 
@@ -122,7 +122,7 @@ const Generate = () => {
 
   const handleCountdownExpired = () => {
     setCountdownStatus("expired");
-    setCurrentQRCode(generateLink);
+    // setCurrentQRCode(generateLink);
   };
 
   const handleDownload = () => {
