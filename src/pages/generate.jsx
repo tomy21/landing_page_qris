@@ -55,10 +55,6 @@ const Generate = () => {
     console.log("data :", encryptedData);
     const fetchData = async () => {
       try {
-        // socket.on("dataPayment", (results) => {
-        //   setPageDone(results);
-        //   console.log({ dataSocket: results.code });
-        // });
         const pusher = new Pusher("548ff46dda83b623f146", {
           cluster: "ap1",
         });
@@ -66,7 +62,6 @@ const Generate = () => {
         const channel = pusher.subscribe("Issues");
 
         channel.bind("PopUp", (data) => {
-          // Handle received data here
           setPageDone(data.data.code);
           console.log("Received data:", data.data.code);
         });
@@ -98,13 +93,7 @@ const Generate = () => {
     setP1(paramP1);
     setP2(paramP2);
     fetchData();
-    // return () => {
-    //   // Unsubscribe when component unmounts
-    //   pusher.unsubscribe("channel-name");
-    // };
   }, [location.search]);
-
-  // const generateLink = `http://localhost:3000/generate?p1=${p1}&p2=${p2}`;
 
   console.log({ dataSaya: pageDone.code });
 
@@ -142,7 +131,7 @@ const Generate = () => {
     <div className="p-5">
       {apiResponse && (
         <div className="h-full">
-          <div className="w-full h-[80vh] xl:h-[93vh] xl:w-96 flex flex-col justify-center items-center m-auto bg-white rounded-md shadow-md shadow-white">
+          <div className="w-full h-full xl:h-[93vh] xl:w-96 flex flex-col justify-center items-center m-auto bg-white rounded-md shadow-md shadow-white">
             <div
               className={`h-[40%] w-full bg-blue-400 rounded-t-md border-gray-900 text-black ${
                 countdownStatus === "active" ? " " : "hidden"
