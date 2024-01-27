@@ -8,6 +8,7 @@ import { MD5 } from "crypto-js";
 import CountdownTimer from "../components/countDownt";
 import NumberFormatComponent from "../components/numberFormater";
 import Pusher from "pusher-js";
+import axios from "axios";
 
 // const socket = io("https://82qvhws5-3005.asse.devtunnels.ms");
 
@@ -69,23 +70,26 @@ const Generate = () => {
           setPageDone(data.data.code);
           console.log("Received data:", data.data.code);
         });
-        const response = await fetch(apiUrl, {
-          method: "POST",
-          body: JSON.stringify({ data: encryptedData }),
-          headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            "Access-Control-Allow-Origin": "*",
+        const response = await axios.post(
+          apiUrl,
+          {
+            data: encryptedData,
           },
-        });
-        console.log("repsones : ", response);
-        // const responseData = await response.json();
-        // const apiResponse = CryptoJS.AES.decrypt(responseData.data, key);
-        // const decryptedData = JSON.parse(
-        //   apiResponse.toString(CryptoJS.enc.Utf8)
-        // );
-        // setApiResponse(decryptedData);
-        // setCurrentQRCode(responseData.data);
-        // console.log(decryptedData);
+          {
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+            },
+          }
+        );
+        const responseData = response.data.data;
+        const apiResponse = CryptoJS.AES.decrypt(responseData, key);
+        const decryptedData = JSON.parse(
+          apiResponse.toString(CryptoJS.enc.Utf8)
+        );
+        console.log("repsones : ", decryptedData);
+        setApiResponse(decryptedData);
+        setCurrentQRCode(responseData);
+        console.log(decryptedData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
