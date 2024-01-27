@@ -64,7 +64,6 @@ const Generate = () => {
 
         channel.bind("PopUp", (data) => {
           setPageDone(data.data.code);
-          console.log("Received data:", data.data.code);
         });
         const response = await axios.post(
           apiUrl,
@@ -82,11 +81,9 @@ const Generate = () => {
         const decryptedData = JSON.parse(
           apiResponse.toString(CryptoJS.enc.Utf8)
         );
-        console.log("repsones : ", decryptedData);
         setApiResponse(decryptedData);
         setCurrentQRCode(responseData);
         setStatusPayment(decryptedData.data.paymentStatus);
-        console.log(decryptedData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -110,8 +107,6 @@ const Generate = () => {
     handleNavigation();
   }, [statusPayment, navigate]);
 
-  console.log({ dataSaya: pageDone.code });
-
   if (pageDone === 200) {
     const data = {
       noTrx: p2,
@@ -123,7 +118,6 @@ const Generate = () => {
       state: data,
     });
   }
-  console.log({ status: statusPayment });
 
   const handleCountdownExpired = () => {
     setCountdownStatus("expired");
