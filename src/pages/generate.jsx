@@ -36,7 +36,7 @@ const Generate = () => {
     const month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
     const day = currentDate.getDate().toString().padStart(2, "0");
     const date = `${year}${month}${day}PARTNER_KEY`;
-    const apiUrl = `/api/inquiry`;
+    const apiUrl = "https://api-testing-murex.vercel.app/api/inquiry";
     const key = date;
     const hash = MD5(login + password + paramP1 + paramP2 + secret).toString();
 
