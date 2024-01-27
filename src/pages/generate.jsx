@@ -15,6 +15,7 @@ import axios from "axios";
 const Generate = () => {
   const [countdownStatus, setCountdownStatus] = useState("active");
   const [currentQRCode, setCurrentQRCode] = useState(null);
+  const [statusPayment, setStatusPayment] = useState("");
   const [pageDone, setPageDone] = useState(0);
   const location = useLocation();
   const [apiResponse, setApiResponse] = useState(null);
@@ -84,6 +85,7 @@ const Generate = () => {
         console.log("repsones : ", decryptedData);
         setApiResponse(decryptedData);
         setCurrentQRCode(responseData);
+        setStatusPayment(decryptedData.data.paymentStatus);
         console.log(decryptedData);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -94,6 +96,19 @@ const Generate = () => {
     setP2(paramP2);
     fetchData();
   }, [location.search]);
+
+  useEffect(() => {
+    // Check statusPayment and navigate accordingly
+    const handleNavigation = () => {
+      if (statusPayment === "FREE") {
+        navigate("/free");
+      } else if (statusPayment === "PAID") {
+        navigate("/paidOff");
+      }
+    };
+
+    handleNavigation();
+  }, [statusPayment, navigate]);
 
   console.log({ dataSaya: pageDone.code });
 
@@ -108,6 +123,7 @@ const Generate = () => {
       state: data,
     });
   }
+  console.log({ status: statusPayment });
 
   const handleCountdownExpired = () => {
     setCountdownStatus("expired");
