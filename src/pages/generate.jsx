@@ -63,7 +63,7 @@ const Generate = () => {
         const channel = pusher.subscribe("Issues");
 
         channel.bind("PopUp", (data) => {
-          setPageDone(data.data.code);
+          setPageDone(data.data);
         });
         const response = await axios.post(
           apiUrl,
@@ -106,6 +106,8 @@ const Generate = () => {
 
     handleNavigation();
   }, [statusPayment, navigate]);
+
+  console.log(pageDone);
 
   if (pageDone === 200) {
     const data = {
