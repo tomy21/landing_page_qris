@@ -109,7 +109,7 @@ const Generate = () => {
 
   console.log(pageDone);
 
-  if (pageDone === 200) {
+  if (pageDone.noTrx === p2 && pageDone.code === 200) {
     const data = {
       noTrx: p2,
       locations: apiResponse.data.location,
